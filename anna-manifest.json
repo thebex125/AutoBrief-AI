@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "app_id": "com.anitech.autobrief-ai",
+  "name": "AutoBrief AI",
+  "tagline": "From Spoken Words to Executed Tasks in 10 Seconds",
+  "version": "1.0.0",
+  "category": "Productivity & Autonomous Workflows",
+  "author": "thebex Team (Anitech)",
+  "sandbox": {
+    "isolation": "strict",
+    "permissions": [
+      "audio.capture",
+      "llm.reverse_sampling",
+      "clipboard.write",
+      "storage.local"
+    ],
+    "network_egress": "optional"
+  },
+  "orchestration": {
+    "mode": "multi-step-structured",
+    "agents": [
+      {
+        "id": "voice-scribe",
+        "role": "Speech-to-Text & Noise Normalization"
+      },
+      {
+        "id": "speaker-diarization",
+        "role": "Participant & Role Identification"
+      },
+      {
+        "id": "decision-action-miner",
+        "role": "Key Decision & Action Matrix Extraction"
+      },
+      {
+        "id": "responsibility-matcher",
+        "role": "PIC, Priority, Deadline & Follow-Up Synthesizer"
+      }
+    ]
+  },
+  "entrypoints": {
+    "ui": "index.html",
+    "schema": "src/types/actionPlan.ts",
+    "orchestrator": "src/services/annaOrchestrator.ts"
+  }
+}
